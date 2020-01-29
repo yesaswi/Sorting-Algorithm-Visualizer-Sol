@@ -40,6 +40,9 @@ class Array:
 
     def get_len(self):
         return len(self.values)
+    
+    def get_max(self):
+        return max(self.values)
 
 
 def bubble_sort(nums):  # n^2
@@ -212,3 +215,45 @@ def quick_sort(nums):  # n^2
             _quick_sort(items, split_index + 1, high)
 
     _quick_sort(nums, 0, nums.get_len() - 1)
+
+
+def radix_sort(nums):
+    def radixSort(nums): 
+        max1 = nums.get_max()
+        exp = 1
+        while max1/exp > 0: 
+            countingSort(nums,exp) 
+            exp *= 10
+    
+    def countingSort(arr, exp1):
+        n = arr.get_len()
+        output = [0] * (n)
+        count = [0] * (10) 
+    
+        # Store count of occurrences in count[] 
+        for i in range(0, n): 
+            index = (arr.values[i]/exp1) 
+            index = int(index)
+            count[ (index)%10 ] += 1
+    
+        # Change count[i] so that count[i] now contains actual 
+        #  position of this digit in output array 
+        for i in range(1,10): 
+            count[i] += count[i-1] 
+    
+        # Build the output array 
+        i = n-1
+        while i>=0: 
+            index = (arr.values[i]/exp1) 
+            index = int(index)
+            output[ count[ (index)%10 ] - 1] = arr.values[i] 
+            count[ (index)%10 ] -= 1
+            i -= 1
+    
+        # Copying the output array to arr[], 
+        # so that arr now contains sorted numbers 
+        i = 0
+        for i in range(0,arr.get_len()): 
+            arr.values[i] = output[i]
+
+    radixSort(nums)
