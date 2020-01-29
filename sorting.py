@@ -224,7 +224,7 @@ def radix_sort(nums):
         while max1/exp > 0: 
             countingSort(nums,exp) 
             exp *= 10
-    
+
     def countingSort(arr, exp1):
         n = arr.get_len()
         output = [0] * (n)
@@ -255,6 +255,6 @@ def radix_sort(nums):
         i = 0
         for i in range(0,arr.get_len()): 
             arr.values[i] = output[i]
-        print(output)
-
+        nums.set_all(output)
+        return output
     radixSort(nums)
