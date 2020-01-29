@@ -255,5 +255,6 @@ def radix_sort(nums):
         i = 0
         for i in range(0,arr.get_len()): 
             arr.values[i] = output[i]
+        print(output)
 
     radixSort(nums)
